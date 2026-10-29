@@ -1,0 +1,15 @@
+services:
+  task-manager:
+    build: .
+    container_name: student-task-manager
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_PATH: /data/tasks.db
+      SECRET_KEY: ${SECRET_KEY:-local-development-key-change-me}
+    volumes:
+      - task_data:/data
+    restart: unless-stopped
+
+volumes:
+  task_data:
